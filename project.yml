@@ -1,0 +1,71 @@
+name: VulkanCube
+options:
+  bundleIdPrefix: com.onelove
+  deploymentTarget:
+    iOS: "15.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+settings:
+  base:
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    GCC_PREPROCESSOR_DEFINITIONS:
+      - "$(inherited)"
+      - "VK_USE_PLATFORM_METAL_EXT=1"
+    CLANG_CXX_LANGUAGE_STANDARD: "c++17"
+
+targets:
+  VulkanCube:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources
+      - path: Shaders
+        buildPhase: resources
+    dependencies:
+      - framework: MoltenVK/MoltenVK/static/MoltenVK.xcframework
+        embed: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.onelove.vulkancube
+        PRODUCT_NAME: VulkanCube
+        TARGETED_DEVICE_FAMILY: "1"
+        SUPPORTS_MACCATALYST: "NO"
+        CODE_SIGNING_ALLOWED: "NO"
+        HEADER_SEARCH_PATHS:
+          - "$(SRCROOT)/MoltenVK/MoltenVK/include"
+        OTHER_LDFLAGS:
+          - "$(inherited)"
+          - "-framework"
+          - "Metal"
+          - "-framework"
+          - "QuartzCore"
+          - "-framework"
+          - "IOSurface"
+          - "-framework"
+          - "CoreGraphics"
+    info:
+      path: Sources/Info.plist
+      properties:
+        CFBundleDisplayName: Vulkan Cube
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        ITSAppUsesNonExemptEncryption: false
+        UILaunchScreen: {}
+        UIRequiredDeviceCapabilities:
+          - arm64
+        LSRequiresIPhoneOS: true
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        CADisableMinimumFrameDurationOnPhone: true
+
+schemes:
+  VulkanCube:
+    build:
+      targets:
+        VulkanCube: all
+    run:
+      config: Release
+    archive:
+      config: Release

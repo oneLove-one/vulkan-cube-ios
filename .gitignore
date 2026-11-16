@@ -1,0 +1,10 @@
+build/
+DerivedData/
+MoltenVK/
+MoltenVK-ios.tar
+*.xcodeproj
+*.xcworkspace
+Shaders/*.spv
+Payload/
+*.ipa
+.DS_Store
