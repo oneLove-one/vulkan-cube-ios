@@ -38,6 +38,10 @@ targets:
         OTHER_LDFLAGS:
           - "$(inherited)"
           - "-framework"
+          - "UIKit"
+          - "-framework"
+          - "Foundation"
+          - "-framework"
           - "Metal"
           - "-framework"
           - "QuartzCore"
